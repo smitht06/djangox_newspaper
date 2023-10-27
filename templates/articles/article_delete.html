@@ -2,9 +2,9 @@
 
 {% block content %}
   <h1>Delete</h1>
-  <form action="post">
+  <form action="" method="post">
     {% csrf_token %}
-    <p>Are you sure you want to delete this article?</p>
-    <button class="btn btn-danger">Delete</button>
+    <p>Are you sure you want to delete "{{ article.title }}"?</p>
+    <button class="btn btn-danger ml-2" type="submit">Confirm</button>
   </form>
-{% endblock content %}
+{% endblock %}
