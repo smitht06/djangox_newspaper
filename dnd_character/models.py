@@ -49,7 +49,7 @@ class Character(models.Model):
     personality_traits = models.TextField(blank=True)
     backstory = models.TextField(blank=True)
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name
