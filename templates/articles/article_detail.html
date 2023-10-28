@@ -16,7 +16,7 @@
   {% endfor %}
   <hr />
   <h4>Add a comment</h4>
-  {% if user.is_athenticated %}
+  {% if user.is_authenticated %}
   <form action="" method="post">
     {% csrf_token %}
     {{ form|crispy }}
