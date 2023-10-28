@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "accounts",
     "pages",
     "articles",
+    "dnd_character",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
