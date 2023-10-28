@@ -12,6 +12,7 @@ from django.urls import reverse_lazy, reverse
 from .forms import CommentForm
 from django.views import View
 from django.views.generic.detail import SingleObjectMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 class CommentGet(DetailView):
@@ -60,23 +61,34 @@ class ArticleDetailView(DetailView):
         return view(request, *args, **kwargs)
 
 
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
     fields = ("title", "body")
     template_name = "articles/article_edit.html"
 
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
 
-class ArticleDeleteView(DeleteView):
+
+class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Article
     template_name = "articles/article_delete.html"
     success_url = reverse_lazy("article_list")
 
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
 
-class ArticleCreateView(CreateView):
+
+class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
     template_name = "articles/article_new.html"
     fields = (
         "title",
         "body",
-        "author",
     )
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
