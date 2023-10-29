@@ -24,3 +24,5 @@ class CharacterCreationForm(forms.ModelForm):
             "personality_traits",
             "backstory",
         ]
+
+    
