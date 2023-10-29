@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from .models import Race, CharacterClass, Character
 
+
 class RaceModelTest(TestCase):
     def setUp(self):
         self.race = Race.objects.create(name="Elf")
@@ -15,6 +16,7 @@ class RaceModelTest(TestCase):
     def test_race_model(self):
         self.assertIsInstance(self.race, Race)
 
+
 class CharacterClassModelTest(TestCase):
     def setUp(self):
         self.character_class = CharacterClass.objects.create(name="Wizard")
@@ -27,6 +29,7 @@ class CharacterClassModelTest(TestCase):
 
     def test_character_class_model(self):
         self.assertIsInstance(self.character_class, CharacterClass)
+
 
 class CharacterModelTest(TestCase):
     def setUp(self):
