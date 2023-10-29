@@ -1,1 +1,16 @@
-<h1>Character list</h1>
+{% extends '_base.html' %}
+
+{% block title %}
+  Articles
+{% endblock %}
+
+{% block content %}
+  <h1>Character list</h1>
+  <ul>
+    {% for character in character_list %}
+      <li>
+        <a href="{% url 'character_detail' character.pk %}">{{ character.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

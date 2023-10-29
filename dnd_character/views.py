@@ -17,3 +17,4 @@ class CharacterListView(ListView):
 class CharacterDetailView(DetailView):
     model = Character
     template_name = "dnd_character/character_detail.html"
+    
