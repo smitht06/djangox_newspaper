@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "pages",
     "articles",
     "dnd_character",
+    "fediverse"
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
