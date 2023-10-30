@@ -3,6 +3,10 @@ from pathlib import Path
 # config/settings.py
 # django-debug-toolbar
 import socket
+from environs import Env
+
+env = Env() 
+env.read_env()  
 
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
@@ -185,3 +189,9 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
+
+MASTODON_INSTANCE_URL = env.str("MASTODON_INSTANCE_URL")
+MASTODON_CLIENT_ID = env.str("MASTODON_CLIENT_ID")
+MASTODON_CLIENT_SECRET = env.str("MASTODON_CLIENT_SECRET")
+MASTODON_REDIRECT_URI = env.str("MASTODON_REDIRECT_URI")
+MASTODON_ACCESS_TOKEN = env.str("MASTODON_ACCESS_TOKEN")

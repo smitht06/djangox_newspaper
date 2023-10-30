@@ -8,6 +8,7 @@ urlpatterns = [
     path("", include("pages.urls")),
     path("articles/", include("articles.urls")),
     path("character/", include("dnd_character.urls")),
+ 
 ]
 
 if settings.DEBUG:
