@@ -31,16 +31,25 @@
 
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li>
-              <a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Home</a>
-            </li>
-            <li>
-              <a href="{% url 'about' %}" class="nav-link px-2 link-dark">About</a>
-            </li>
-            <li>
               <a href="{% url 'article_list' %}" class="nav-link px-2 link-dark">Blog</a>
             </li>
             <li>
               <a href="{% url 'character_list' %}" class="nav-link px-2 link-dark">DnD Characters</a>
+            </li>
+            <li>
+            {% if user.is_authenticated %}
+            <div class="dropdown text-end">
+            <a href="#" class="nav-link px-2 link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Fediverse</a>
+            <ul class="dropdown-menu text-small">
+            <!-- This part will only be visible to authenticated users -->
+            <li><a class="dropdown-item nav-link px-2 link-dark" href="{% url 'mastodon_timeline' %}">Mastodon Timeline</a></li>
+            <li><a class="dropdown-item nav-link px-2 link-dark" href="{% url 'mastodon_account_detail' pk=user.pk %}">My Account</a></li>
+            <li><a class="dropdown-item nav-link px-2 link-dark" href="{% url 'mastodon_account_update' pk=user.pk %}">Edit My Account</a></li>
+            </ul>
+          </div>
+            {% endif %}
+            
+            </li>
           </ul>
 
           <div class="dropdown text-end">
