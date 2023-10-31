@@ -14,7 +14,7 @@ class MastodonUser(models.Model):
     client_secret = models.CharField(max_length=100)
     access_token = models.CharField(max_length=100)
     api_base_url = models.CharField(max_length=100)
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1
     )
 
