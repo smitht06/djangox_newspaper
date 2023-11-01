@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf import settings
 
 from .views import (
     ArticleListView,
@@ -15,3 +16,4 @@ urlpatterns = [
     path("new/", ArticleCreateView.as_view(), name="article_new"),
     path("", ArticleListView.as_view(), name="article_list"),
 ]
+

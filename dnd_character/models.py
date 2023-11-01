@@ -31,6 +31,7 @@ class Character(models.Model):
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
     character_class = models.ForeignKey(CharacterClass, on_delete=models.CASCADE)
     level = models.PositiveIntegerField(default=1)
+    photo = models.ImageField(upload_to="media/character_photos", blank=True)
 
     # Ability Scores
     strength = models.PositiveIntegerField(default=10)
