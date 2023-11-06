@@ -11,7 +11,13 @@
 {% endblock %}
 
 {% block content %}
-  <py-config>packages = ["pandas"]</py-config>
+
+<input type="text" id="input" />
+<button id="button">Calculate</button>
+
+  
+
 
   <script type="py" src="{% static 'python/calculator.py' %}"></script>
+
 {% endblock %}
