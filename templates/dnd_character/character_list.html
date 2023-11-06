@@ -32,7 +32,7 @@
           <td>
             {% if character.photo %}
               <!-- Use the 'character-photo' class for circular images -->
-              <img src="{{ character.photo.url }}" alt="{{ character.name }}" class="character-photo">
+              <img src="{{ character.photo.url }}" alt="{{ character.name }}" class="character-photo" />
             {% else %}
               <!-- Display a placeholder image or default content -->
             {% endif %}
@@ -47,13 +47,13 @@
   </table>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const tableRows = document.querySelectorAll("tr[data-href]");
+    document.addEventListener('DOMContentLoaded', function () {
+      const tableRows = document.querySelectorAll('tr[data-href]')
       tableRows.forEach((row) => {
-        row.addEventListener("click", function () {
-          window.location.href = row.getAttribute("data-href");
-        });
-      });
-    });
+        row.addEventListener('click', function () {
+          window.location.href = row.getAttribute('data-href')
+        })
+      })
+    })
   </script>
 {% endblock %}

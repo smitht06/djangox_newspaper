@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}
+  PyScript
+{% endblock %}
+
+{% block extra_header %}
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+{% endblock %}
+
+{% block content %}
+  <py-config>packages = ["pandas"]</py-config>
+
+  <script type="py" src="{% static 'python/calculator.py' %}"></script>
+{% endblock %}

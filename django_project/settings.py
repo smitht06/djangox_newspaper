@@ -5,8 +5,8 @@ from pathlib import Path
 import socket
 from environs import Env
 
-env = Env() 
-env.read_env()  
+env = Env()
+env.read_env()
 
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     "pages",
     "articles",
     "dnd_character",
-    "fediverse"
+    "fediverse",
+    "calculator",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
