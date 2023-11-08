@@ -1,6 +1,4 @@
-from pyscript import document
-import math
-import js
+from pyscript import document, display
 
 
 def q(selector, root=document):
@@ -11,7 +9,7 @@ memory = []
 
 input = q("#input")
 button = q("#button")
-display = q("#display")
+calc_display = q("#display")
 
 button_1 = q("#btn1")
 button_2 = q("#btn2")
@@ -29,37 +27,42 @@ button_minus = q("#btnMinus")
 button_multiply = q("#btnMultiply")
 button_divide = q("#btnDivide")
 button_equals = q("#btnEquals")
-
-expression_string = q("expressionString")
+expression_string = q("#expressionString")
 
 
 def enter_number(e):
     value = e.target.value
-    display.value = display.value + e.target.value
+    calc_display.value = calc_display.value + e.target.value
     memory.append(value)
     print(memory)
 
 
 def clear_memory(e):
-    display.value = ""
+    calc_display.value = ""
+    display(f"", target="expressionString", append=False)
     memory.clear()
 
 
 def enter_operand(e):
     operand = e.target.value
     memory.append(operand)
-    display.value = ""
+    calc_display.value = ""
     print(memory)
 
 
 def calculate(e):
     expression_str = "".join(memory)
 
+    print(f" {str(expression_str)} ")
+
     try:
         result = eval(expression_str)
         print(expression_str)
-        display.value = result
+        calc_display.value = result
         display(f"{expression_str}", target="expressionString")
+        memory.clear()
+        memory.append(str(result))
+
     except Exception as e:
-        display.value = "err"
+        calc_display.value = "err"
         print(f"Error: {str(e)}")

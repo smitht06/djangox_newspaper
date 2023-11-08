@@ -1,6 +1,4 @@
 from pyscript import document, display
-import math
-import js
 
 
 def q(selector, root=document):
@@ -62,6 +60,8 @@ def calculate(e):
         print(expression_str)
         calc_display.value = result
         display(f"{expression_str}", target="expressionString")
+        memory.clear()
+        memory.append(str(result))
 
     except Exception as e:
         calc_display.value = "err"
