@@ -1,96 +1,194 @@
-{% extends '_base.html' %}
-{% load static %}
+{% extends '_base.html' %} {% load static %} {% block title %} PyScript {%
+endblock %} {% block extra_header %}
+<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+<script
+	type="module"
+	src="https://pyscript.net/snapshots/2023.11.1.RC3/core.js"></script>
+{% endblock %} {% block content %}
+<section class="pyscript">
+	<py-tutor modules="./todo.py">
+		<py-config></py-config>
+		<script type="py" src="{% static 'python/calculator.py' %}"></script>
+	</py-tutor>
+</section>
 
-{% block title %}
-  PyScript
-{% endblock %}
-
-{% block extra_header %}
-  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-  <script type="module" src="https://pyscript.net/snapshots/2023.11.1.RC3/core.js"></script>
-{% endblock %}
-
-{% block content %}
-  <section class="pyscript">
-    <py-tutor modules="./todo.py">
-      <py-config></py-config>
-      <script type="py" src="{% static 'python/calculator.py' %}"></script>
-    </py-tutor>
-  </section>
-
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-4">
-        <div class="calculator">
-          <div class="calculator-screen">
-            <input type="text" class="form-control mb-2" id="display" disabled />
-          </div>
-          <div class="form-text mb-2" id="expressionString"></div>
-          <div class="calculator-buttons">
-            <div class="row">
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn1" value="1" py-click="enter_number">1</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn2" value="2" py-click="enter_number">2</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn3" value="3" py-click="enter_number">3</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-danger mb-2 btn-fixed-size" id="btnClear" py-click="clear_memory">C</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn4" value="4" py-click="enter_number">4</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn5" value="5" py-click="enter_number">5</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn6" value="6" py-click="enter_number">6</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-info mb-2 btn-fixed-size" id="btnPlus" value="+" py-click="enter_operand">+</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn7" value="7" py-click="enter_number">7</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn8" value="8" py-click="enter_number">8</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn9" value="9" py-click="enter_number">9</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-info mb-2 btn-fixed-size" id="btnMinus" value="-" py-click="enter_operand">-</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btn0" value="0" py-click="enter_number">0</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-primary mb-2 btn-fixed-size" id="btnPeriod" value="." py-click="enter_number">.</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-info mb-2 btn-fixed-size" id="btnMultiply" value="*" py-click="enter_operand">*</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-info mb-2 btn-fixed-size" id="btnDivide" value="/" py-click="enter_operand">/</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <button class="btn btn-success mb-2 btn-fixed-size" id="btnEquals" py-click="calculate">=</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container mt-5">
+	<div class="row justify-content-center">
+		<div class="col-4">
+			<div class="calculator">
+				<div class="calculator-screen">
+					<input
+						type="text"
+						class="form-control mb-2"
+						id="display"
+						disabled />
+				</div>
+				<div class="form-text mb-2" id="expressionString"></div>
+				<div class="calculator-buttons">
+					<div class="row">
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn1"
+								value="1"
+								py-click="enter_number">
+								1
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn2"
+								value="2"
+								py-click="enter_number">
+								2
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn3"
+								value="3"
+								py-click="enter_number">
+								3
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-danger mb-2 btn-fixed-size"
+								id="btnClear"
+								py-click="clear_memory">
+								C
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn4"
+								value="4"
+								py-click="enter_number">
+								4
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn5"
+								value="5"
+								py-click="enter_number">
+								5
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn6"
+								value="6"
+								py-click="enter_number">
+								6
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-info mb-2 btn-fixed-size"
+								id="btnPlus"
+								value="+"
+								py-click="enter_operand">
+								+
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn7"
+								value="7"
+								py-click="enter_number">
+								7
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn8"
+								value="8"
+								py-click="enter_number">
+								8
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn9"
+								value="9"
+								py-click="enter_number">
+								9
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-info mb-2 btn-fixed-size"
+								id="btnMinus"
+								value="-"
+								py-click="enter_operand">
+								-
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btn0"
+								value="0"
+								py-click="enter_number">
+								0
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-primary mb-2 btn-fixed-size"
+								id="btnPeriod"
+								value="."
+								py-click="enter_number">
+								.
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-info mb-2 btn-fixed-size"
+								id="btnMultiply"
+								value="*"
+								py-click="enter_operand">
+								*
+							</button>
+						</div>
+						<div class="col-3">
+							<button
+								class="btn btn-info mb-2 btn-fixed-size"
+								id="btnDivide"
+								value="/"
+								py-click="enter_operand">
+								/
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<button
+								class="btn btn-success mb-2 btn-fixed-size"
+								id="btnEquals"
+								py-click="calculate">
+								=
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
