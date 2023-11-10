@@ -32,7 +32,7 @@ expression_string = q("#expressionString")
 
 def enter_number(e):
     value = e.target.value
-    calc_display.value = calc_display.value + e.target.value
+    calc_display.value = f"{calc_display.value} {e.target.value}"
     memory.append(value)
     print(memory)
 
@@ -46,11 +46,11 @@ def clear_memory(e):
 def enter_operand(e):
     operand = e.target.value
     memory.append(operand)
-    calc_display.value = ""
+    calc_display.value = f"{calc_display.value} {operand}"
     print(memory)
 
 
-def calculate(e):
+def calculate(error):
     expression_str = "".join(memory)
 
     print(f" {str(expression_str)} ")
@@ -63,6 +63,6 @@ def calculate(e):
         memory.clear()
         memory.append(str(result))
 
-    except Exception as e:
+    except Exception as error:
         calc_display.value = "err"
-        print(f"Error: {str(e)}")
+        print(f"Error: {str(error)}")
