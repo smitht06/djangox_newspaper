@@ -66,3 +66,4 @@ def calculate(error):
     except Exception as error:
         calc_display.value = "err"
         print(f"Error: {str(error)}")
+
