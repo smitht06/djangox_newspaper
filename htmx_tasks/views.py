@@ -12,4 +12,15 @@ def delete_task(request, id):
     tasks = Task.objects.all()
     return render(request, "htmx_tasks/tasks_list.html", {"tasks": tasks})
 
+@require_http_methods(["POST"])
+def create_task(request):
+    title = request.POST.get("title")
+    description = request.post.get("description")
+    completed = request.POST.get("completed")
+    Task.objects.create(title=title, description=description, completed=completed)
+    tasks = Task.objects.all()
+    return render(request, "htmx_tasks/tasks_list.html", {"tasks": tasks})
+
+
+
 
