@@ -10,6 +10,7 @@ urlpatterns = [
     path("character/", include("dnd_character.urls")),
     path("fediverse/", include("fediverse.urls")),
     path("calculator/", include("calculator.urls")),
+    path("tasks/", include("htmx_tasks.urls")),
 ]
 
 if settings.DEBUG:
