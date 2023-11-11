@@ -1,0 +1,37 @@
+[
+    {
+        "model": "dnd_character.characterclass",
+        "pk": 1,
+        "fields":{
+            "name": "Barbarian"
+        }
+    },
+    {
+        "model": "dnd_character.characterclass",
+        "pk": 2,
+        "fields":{
+            "name": "Bard"
+        }
+    },
+    {
+        "model": "dnd_character.characterclass",
+        "pk": 3,
+        "fields":{
+            "name": "Cleric"
+        }
+    },
+    {
+        "model": "dnd_character.characterclass",
+        "pk": 4,
+        "fields":{
+            "name": "Druid"
+        }
+    },
+    {
+        "model":"dnd_character.characterclass",
+        "pk": 5,
+        "fields":{
+            "name": "Fighter"
+        }
+    }
+]

@@ -2,24 +2,47 @@ import random
 from django.views.generic.edit import CreateView
 from .models import Character
 from .forms import CharacterCreationForm
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.views import View
 from django.http import JsonResponse
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
-class CharacterCreateView(CreateView):
+class CharacterCreateView(LoginRequiredMixin, CreateView):
     model = Character
     form_class = CharacterCreationForm
-    template_name = (
-        "dnd_character/character_create.html"  # Replace with your desired template
-    )
-    success_url = (
-        ""  # Replace with the URL to redirect to after successful form submission
-    )
+    template_name = "dnd_character/character_create.html"
+    success_url = ""
 
     def form_valid(self, form):
         form.instance.player = self.request.user
         return super().form_valid(form)
+
+
+class CharacterUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Character
+    form_class = CharacterCreationForm
+    template_name = "dnd_character/character_update.html"
+    success_url = ""
+
+    def form_valid(self, form):
+        form.instance.player = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.player == self.request.user
+
+
+class CharacterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Character
+    template_name = "dnd_character/character_delete.html"
+    success_url = reverse_lazy("character_list")
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.player == self.request.user
 
 
 class GenerateRandomStatsView(View):
@@ -38,11 +61,20 @@ class GenerateRandomStatsView(View):
         return stats
 
 
-class CharacterListView(ListView):
+class CharacterListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Character
     template_name = "dnd_character/character_list.html"
+    success_url = reverse_lazy("character_list")
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.player == self.request.user
 
 
-class CharacterDetailView(DetailView):
+class CharacterDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Character
     template_name = "dnd_character/character_detail.html"
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.player == self.request.user

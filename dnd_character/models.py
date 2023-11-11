@@ -8,7 +8,7 @@ from django.db import models
 
 
 class Race(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
 
     # Add any additional race-specific fields here
 
@@ -17,17 +17,23 @@ class Race(models.Model):
 
 
 class CharacterClass(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
 
     # Add any additional class-specific fields here
 
+    def __str__(self):
+        return self.name
+    
+class Alignment(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    
     def __str__(self):
         return self.name
 
 
 class Character(models.Model):
     # Basic Information
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
     character_class = models.ForeignKey(CharacterClass, on_delete=models.CASCADE)
     level = models.PositiveIntegerField(default=1)
@@ -46,15 +52,17 @@ class Character(models.Model):
     current_hit_points = models.PositiveIntegerField(default=10)
 
     # Other Character Details
-    alignment = models.CharField(max_length=20)
+    alignment = models.ForeignKey(Alignment, on_delete=models.CASCADE)
     background = models.CharField(max_length=50)
     personality_traits = models.TextField(blank=True)
     backstory = models.TextField(blank=True)
 
-    player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
+    player = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1
+    )
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         return reverse("character_detail", kwargs={"pk": self.pk})

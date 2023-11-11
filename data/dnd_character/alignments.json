@@ -1,0 +1,65 @@
+[
+    {
+        "model": "dnd_character.alignment",
+        "pk": 1,
+        "fields": {
+            "name": "Lawful Good"
+        }
+    },
+    {
+        "model": "dnd_character.alignment",
+        "pk": 2,
+        "fields": {
+            "name": "Neutral Good"
+        }
+    },
+    {
+        "model": "dnd_character.alignment",
+        "pk": 3,
+        "fields": {
+            "name": "Chaotic Good"
+        }
+    },
+    {
+        "model": "dnd_character.alignment",
+        "pk": 4,
+        "fields": {
+            "name": "Lawful Neutral"
+        }
+    },
+    {
+        "model": "dnd_character.alignment",
+        "pk": 5,
+        "fields": {
+            "name": "Neutral"
+        }
+    },
+    {
+        "model": "dnd_character.alignment",
+        "pk": 6,
+        "fields": {
+            "name": "Chaotic Neutral"
+        }
+    },
+    {
+        "model": "dnd_character.alignment",
+        "pk": 7,
+        "fields": {
+            "name": "Lawful Evil"
+        }
+    },
+    {
+        "model": "dnd_character.alignment",
+        "pk": 8,
+        "fields": {
+            "name": "Neutral Evil"
+        }
+    },
+    {
+        "model": "dnd_character.alignment",
+        "pk": 9,
+        "fields": {
+            "name": "Chaotic Evil"
+        }
+    }
+]

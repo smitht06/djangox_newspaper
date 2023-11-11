@@ -19,7 +19,7 @@ def create_task(request):
     completed = request.POST.get("completed")
     Task.objects.create(title=title, description=description, completed=completed)
     tasks = Task.objects.all()
-    return render(request, "htmx_tasks/tasks_list.html", {"tasks": tasks})
+    return render(request, "htmx_tasks/create_task.html", {"tasks": tasks})
 
 
 

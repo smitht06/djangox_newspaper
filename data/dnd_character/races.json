@@ -1,0 +1,31 @@
+[
+    {
+        "model": "dnd_character.race",
+        "pk": 1,
+        "fields": {
+            "name": "Human"
+        }
+    },
+    {
+        "model": "dnd_character.race",
+        "pk": 2,
+        "fields": {
+            "name": "Elf"
+        }
+    },
+    {
+        "model":"dnd_character.race",
+        "pk": 3,
+        "fields": {
+            "name": "Dwarf"
+        }
+    },
+    {
+        "model": "dnd_character.race",
+        "pk": 4,
+        "fields": {
+            "name": "Halfling"
+        }
+    }
+    
+]

@@ -4,11 +4,14 @@ from .views import (
     CharacterListView,
     CharacterDetailView,
     GenerateRandomStatsView,
+    CharacterUpdateView,
+    CharacterDeleteView,
 )
 
 urlpatterns = [
     # Other URL patterns...
     path("create/", CharacterCreateView.as_view(), name="character_create"),
+    path("update/<int:pk>/", CharacterUpdateView.as_view(), name="character_update"),
     path("", CharacterListView.as_view(), name="character_list"),
     path("<int:pk>/", CharacterDetailView.as_view(), name="character_detail"),
     path(
@@ -16,4 +19,5 @@ urlpatterns = [
         GenerateRandomStatsView.as_view(),
         name="generate_random_stats",
     ),
+    path("delete/<int:pk>/", CharacterDeleteView.as_view(), name="character_delete"),
 ]
