@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "fediverse",
     "calculator",
     "htmx_tasks",
+    "django_htmx",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",  # WhiteNoise
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",  # django-htmx
     "debug_toolbar.middleware.DebugToolbarMiddleware",  # Django Debug Toolbar
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",

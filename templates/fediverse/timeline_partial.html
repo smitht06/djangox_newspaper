@@ -1,0 +1,29 @@
+{% for post in mastodon_timeline %}
+{% if forloop.last %} 
+
+<div hx-get="{% url 'mastodon_timeline' %}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this">
+  {% else %} 
+  <div>
+  {% endif %}          
+{% if post.content %}
+            <div class="card mb-3">
+              <div class="card-body text-right">
+                <h5 class="card-title">{{ post.account.display_name|safe }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@{{ post.account.username|safe }}</h6>
+
+                {{ post.content|safe }}
+
+                <a href="{{ post.uri }}" class="btn btn-primary">View Post</a>
+                <hr />
+                {% if post.card %}
+                  <div class="card-body">
+                    <a href="{{ post.card.url }}"><img src="{{ post.card.image }}" alt="{{ post.card.image_description }}" class="card-img-top" /></a>
+                    <h5 class="card-title">{{ post.card.title }}</h5>
+                    <p class="card-text">{{ post.card.description }}</p>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+            </div>
+          {% endif %}
+        {% endfor %}

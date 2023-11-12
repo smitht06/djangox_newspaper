@@ -14,13 +14,16 @@ class MastodonTimelineView(ListView, LoginRequiredMixin, UserPassesTestMixin):
     template_name = "fediverse/timeline.html"
     context_object_name = "mastodon_timeline"
     model = MastodonUser
+    paginate_by = 5
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["mastodon_timeline"] = MastodonUser.objects.get(
-            user=self.request.user
-        ).get_timeline()
-        return context
+    def get_template_names(self):
+        if self.request.htmx:
+            return "fediverse/timeline_partial.html"
+        else:
+            return "fediverse/timeline.html"
+        
+    def get_queryset(self):
+        return MastodonUser.objects.get(user=self.request.user).get_timeline()
 
     def test_func(self):
         return (

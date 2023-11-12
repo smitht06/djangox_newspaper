@@ -3,6 +3,8 @@ from mastodon import Mastodon
 from django.conf import settings
 import re
 from utils.template_utils import remove_links
+from datetime import datetime
+
 
 # Create your models here.
 
@@ -31,9 +33,15 @@ class MastodonUser(models.Model):
 
     def get_timeline(self):
         mastodon = self.get_mastodon_api()
-        timeline = mastodon.timeline()
+        timeline = mastodon.timeline_local(limit=50)
         for status in timeline:
             status["content"] = remove_links(status["content"])
-            
+
+        with open("log.txt", "w") as f:
+            f.write(
+                f"{len(timeline)} statuses in timeline at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} \n"
+            )
+
         return timeline
 
+    
