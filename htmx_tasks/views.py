@@ -19,15 +19,18 @@ class TaskListView(ListView):
     context_object_name = "tasks"
 
 
+class TaskCreateView(View):
+    def post(self, request):
+        title = request.POST.get("title")
+        Task.objects.create(title=title)
+        tasks = Task.objects.all()
+        return render(request, "htmx_tasks/tasks_list.html", {"tasks": tasks})
+    
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
-@require_http_methods(["POST"])
-def create_task(request):
-    title = request.POST.get("title")
-    description = request.post.get("description")
-    completed = request.POST.get("completed")
-    Task.objects.create(title=title, description=description, completed=completed)
-    tasks = Task.objects.all()
-    return render(request, "htmx_tasks/create_task.html", {"tasks": tasks})
+
+
 
 
 
