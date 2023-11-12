@@ -5,29 +5,52 @@
     <div class="row">
       <div class="col-md-10 offset-md-1">
         <h1>Mastodon Timeline</h1>
-        {% for post in mastodon_timeline %}
-          {% if post.content %}
-            <div class="card mb-3">
-              <div class="card-body text-right">
-                <h5 class="card-title">{{ post.account.display_name|safe }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">@{{ post.account.username|safe }}</h6>
+        <div class="infinite-scroll-container" hx-get="{% url 'mastodon_timeline' %}" hx-trigger="scroll">
+          {% for post in mastodon_timeline %}
+            {% if post.content %}
+              <div class="card mb-3">
+                <div class="card-body text-right">
+                  <h5 class="card-title">{{ post.account.display_name|safe }}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">@{{ post.account.username|safe }}</h6>
 
-                {{ post.content|safe }}
+                  {{ post.content|safe }}
 
-                <a href="{{ post.uri }}" class="btn btn-primary">View Post</a>
-                <hr />
-                {% if post.card %}
-                  <div class="card-body">
-                    <a href="{{ post.card.url }}"><img src="{{ post.card.image }}" alt="{{ post.card.image_description }}" class="card-img-top" /></a>
-                    <h5 class="card-title">{{ post.card.title }}</h5>
-                    <p class="card-text">{{ post.card.description }}</p>
-                  </div>
-                {% endif %}
+                  <a href="{{ post.uri }}" class="btn btn-primary">View Post</a>
+                  <hr />
+                  {% if post.card %}
+                    <div class="card-body">
+                      <a href="{{ post.card.url }}"><img src="{{ post.card.image }}" alt="{{ post.card.image_description }}" class="card-img-top" /></a>
+                      <h5 class="card-title">{{ post.card.title }}</h5>
+                      <p class="card-text">{{ post.card.description }}</p>
+                    </div>
+                  {% endif %}
+                </div>
               </div>
-            </div>
-          {% endif %}
-        {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="loader" style="display: none;">Loading...</div>
 {% endblock %}
+
+<script>
+  document.addEventListener('htmx:afterSwap', function (event) {
+    console.log('htmx:afterSwap event triggered')
+    if (event.detail.trigger === 'scroll') {
+      // Check if there is new content
+      console.log('scrolllllll')
+      var newContent = event.detail.target.querySelector('.infinite-scroll-container')
+      if (newContent) {
+        // Append the new content to the existing timeline container
+        var timelineContainer = document.querySelector('.infinite-scroll-container')
+        timelineContainer.innerHTML += newContent.innerHTML
+  
+        // Remove the new content element to prevent duplicates
+        newContent.parentNode.removeChild(newContent)
+      }
+    }
+  })
+</script>

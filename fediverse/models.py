@@ -31,7 +31,7 @@ class MastodonUser(models.Model):
 
     def get_timeline(self):
         mastodon = self.get_mastodon_api()
-        timeline = mastodon.timeline()
+        timeline = mastodon.timeline_local()
         for status in timeline:
             status["content"] = remove_links(status["content"])
             
