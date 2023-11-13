@@ -51,6 +51,8 @@ class ArticleListView(ListView):
     model = Article
     template_name = "articles/article_list.html"
 
+    
+
 
 class ArticleDetailView(DetailView):
     def get(self, request, *args, **kwargs):

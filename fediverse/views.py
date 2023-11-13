@@ -34,7 +34,7 @@ class MastodonAddAccountView(CreateView, LoginRequiredMixin):
     model = MastodonUser
     form_class = MastodonUserCreationForm
     template_name = "fediverse/mastodonuser_create.html"
-    success_url = "fediverse/"
+    success_url = ""
 
     def form_valid(self, form):
         form.instance.user = self.request.user
