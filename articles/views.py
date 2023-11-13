@@ -50,8 +50,16 @@ class CommentPost(SingleObjectMixin, FormView):
 class ArticleListView(ListView):
     model = Article
     template_name = "articles/article_list.html"
+    paginate_by = 5
 
-    
+    def get_template_names(self):
+        if self.request.htmx:
+            return "articles/partials/article_list.html"
+        else:
+            return "articles/article_list.html"
+
+    def get_queryset(self):
+        return Article.objects.all().order_by("-date")
 
 
 class ArticleDetailView(DetailView):

@@ -66,3 +66,4 @@ class Character(models.Model):
 
     def get_absolute_url(self):
         return reverse("character_detail", kwargs={"pk": self.pk})
+
