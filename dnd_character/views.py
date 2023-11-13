@@ -61,14 +61,13 @@ class GenerateRandomStatsView(View):
         return stats
 
 
-class CharacterListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+class CharacterListView(LoginRequiredMixin, ListView):
     model = Character
     template_name = "dnd_character/character_list.html"
     success_url = reverse_lazy("character_list")
 
-    def test_func(self):
-        obj = self.get_object()
-        return obj.player == self.request.user
+    def get_queryset(self):
+        return Character.objects.filter(player=self.request.user)
 
 
 class CharacterDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
