@@ -5,28 +5,7 @@
     <div class="row">
       <div class="col-md-10 offset-md-1">
         <h1>Mastodon Timeline</h1>
-        {% for post in mastodon_timeline %}
-          {% if post.content %}
-            <div class="card mb-3">
-              <div class="card-body text-right">
-                <h5 class="card-title">{{ post.account.display_name|safe }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">@{{ post.account.username|safe }}</h6>
-
-                {{ post.content|safe }}
-
-                <a href="{{ post.uri }}" class="btn btn-primary">View Post</a>
-                <hr />
-                {% if post.card %}
-                  <div class="card-body">
-                    <a href="{{ post.card.url }}"><img src="{{ post.card.image }}" alt="{{ post.card.image_description }}" class="card-img-top" /></a>
-                    <h5 class="card-title">{{ post.card.title }}</h5>
-                    <p class="card-text">{{ post.card.description }}</p>
-                  </div>
-                {% endif %}
-              </div>
-            </div>
-          {% endif %}
-        {% endfor %}
+        {% include 'fediverse/timeline_partial.html' %}
       </div>
     </div>
   </div>
