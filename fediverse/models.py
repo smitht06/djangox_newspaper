@@ -23,25 +23,6 @@ class MastodonUser(models.Model):
     def __str__(self):
         return "mastodon username: " + self.username
 
-    def get_mastodon_api(self):
-        return Mastodon(
-            client_id=self.client_id,
-            client_secret=self.client_secret,
-            access_token=self.access_token,
-            api_base_url=self.api_base_url,
-        )
 
-    def get_timeline(self):
-        mastodon = self.get_mastodon_api()
-        timeline = mastodon.timeline_local(limit=50)
-        for status in timeline:
-            status["content"] = remove_links(status["content"])
-
-        with open("log.txt", "w") as f:
-            f.write(
-                f"{len(timeline)} statuses in timeline at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} \n"
-            )
-
-        return timeline
 
     
