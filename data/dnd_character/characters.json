@@ -1,0 +1,122 @@
+[
+    {
+        "model" : "dnd_character.character",
+        "pk" : 1,
+        "fields" :{
+            "name": "Harry",
+            "race": 1,
+            "character_class": 1,
+            "level": 1,
+            "strength": 10,
+            "dexterity": 10,
+            "constitution": 10,
+            "intelligence": 10,
+            "wisdom": 10,
+            "charisma": 10,
+            "max_hit_points": 10,
+            "current_hit_points": 10,
+            "alignment": 1,
+            "background": "Soldier"
+        }
+    },
+    {
+        "model" : "dnd_character.character",
+        "pk" : 2,
+        "fields":{
+            "name": "James",
+            "race": 2,
+            "character_class": 2,
+            "level": 1,
+            "strength": 10,
+            "dexterity": 10,
+            "constitution": 10,
+            "intelligence": 10,
+            "wisdom": 10,
+            "charisma": 10,
+            "max_hit_points": 10,
+            "current_hit_points": 10,
+            "alignment": 2,
+            "background": "Soldier"
+        }
+    },
+    {
+        "model" : "dnd_character.character",
+        "pk" : 3,
+        "fields" :{
+            "name": "Lily",
+            "race": 1,
+            "character_class": 1,
+            "level": 1,
+            "strength": 10,
+            "dexterity": 10,
+            "constitution": 10,
+            "intelligence": 10,
+            "wisdom": 10,
+            "charisma": 10,
+            "max_hit_points": 10,
+            "current_hit_points": 10,
+            "alignment": 1,
+            "background": "Soldier"
+        }
+    },
+    {
+        "model" : "dnd_character.character",
+        "pk" : 4,
+        "fields" :{
+            "name": "Peter",
+            "race": 1,
+            "character_class": 1,
+            "level": 1,
+            "strength": 10,
+            "dexterity": 10,
+            "constitution": 10,
+            "intelligence": 10,
+            "wisdom": 10,
+            "charisma": 10,
+            "max_hit_points": 10,
+            "current_hit_points": 10,
+            "alignment": 1,
+            "background": "Soldier"
+        }
+    },
+    {
+        "model" : "dnd_character.character",
+        "pk" : 5,
+        "fields" :{
+            "name": "Sirius",
+            "race": 3,
+            "character_class": 1,
+            "level": 1,
+            "strength": 10,
+            "dexterity": 10,
+            "constitution": 16,
+            "intelligence": 10,
+            "wisdom": 10,
+            "charisma": 10,
+            "max_hit_points": 10,
+            "current_hit_points": 10,
+            "alignment": 1,
+            "background": "Soldier"
+        }
+    },
+    {
+        "model" : "dnd_character.character",
+        "pk" : 6,
+        "fields" :{
+            "name": "Remus",
+            "race": 1,
+            "character_class": 1,
+            "level": 1,
+            "strength": 15,
+            "dexterity": 10,
+            "constitution": 10,
+            "intelligence": 10,
+            "wisdom": 11,
+            "charisma": 10,
+            "max_hit_points": 10,
+            "current_hit_points": 10,
+            "alignment": 1,
+            "background": "Soldier"
+        }
+    }
+]
